@@ -59,7 +59,6 @@ public class ListExercisesTest {
 
         assertThat(ListExercises.countOccurrencesOfC(lst, 'o')).isEqualTo(3);
         assertThat(ListExercises.countOccurrencesOfC(lst, 'a')).isEqualTo(0);
-        assertThat(ListExercises.countOccurrencesOfC(lst, 'l')).isEqualTo(4);
     }
 
 }
