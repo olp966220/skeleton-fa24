@@ -104,6 +104,14 @@ public class Model {
      */
     public boolean maxTileExists() {
         // TODO: Task 2. Fill in this function.
+        for (int i = 0; i < board.size(); i++) {
+            for (int j = 0; j < board.size(); j++) {
+                Tile tile = board.tile(i, j);
+                if (tile != null && tile.value() == MAX_PIECE) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
@@ -115,6 +123,43 @@ public class Model {
      */
     public boolean atLeastOneMoveExists() {
         // TODO: Task 3. Fill in this function.
+        if (emptySpaceExists()) {
+            return true;
+        }
+        for (int i = 0; i < board.size(); i++) {
+            for (int j = 0; j < board.size(); j++) {
+                Tile tile = board.tile(i, j);
+                int value = tile.value();
+                if (i >= 1) {
+                    Tile up_tile = board.tile(i-1, j);
+                    int up_value = up_tile.value();
+                    if (up_value == value) {
+                        return true;
+                    }
+                }
+                if (j >= 1) {
+                    Tile left_tile = board.tile(i, j-1);
+                    int left_value = left_tile.value();
+                    if (left_value == value) {
+                        return true;
+                    }
+                }
+                if (i <= board.size() - 2) {
+                    Tile down_tile = board.tile(i+1, j);
+                    int down_value = down_tile.value();
+                    if (down_value == value) {
+                        return true;
+                    }
+                }
+                if (j <= board.size() - 2) {
+                    Tile right_tile = board.tile(i, j+1);
+                    int right_value = right_tile.value();
+                    if (right_value == value) {
+                        return true;
+                    }
+                }
+            }
+        }
         return false;
     }
 
