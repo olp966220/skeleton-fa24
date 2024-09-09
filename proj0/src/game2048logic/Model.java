@@ -198,6 +198,7 @@ public class Model {
             Tile target_tile = board.tile(x, targetY);
             if (target_tile.value() == myValue && !target_tile.wasMerged()) {   // Same value tile to merge
                 board.move(x, targetY, currTile);
+                score += myValue * 2;
             } else {    // Different value tile to move to downside
                 board.move(x, targetY - 1, currTile);
             }
