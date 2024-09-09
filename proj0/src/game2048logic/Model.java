@@ -131,9 +131,9 @@ public class Model {
                 Tile tile = board.tile(i, j);
                 int value = tile.value();
                 if (i >= 1) {
-                    Tile up_tile = board.tile(i-1, j);
-                    int up_value = up_tile.value();
-                    if (up_value == value) {
+                    Tile down_tile = board.tile(i-1, j);
+                    int down_value = down_tile.value();
+                    if (down_value == value) {
                         return true;
                     }
                 }
@@ -145,9 +145,9 @@ public class Model {
                     }
                 }
                 if (i <= board.size() - 2) {
-                    Tile down_tile = board.tile(i+1, j);
-                    int down_value = down_tile.value();
-                    if (down_value == value) {
+                    Tile up_tile = board.tile(i+1, j);
+                    int up_value = up_tile.value();
+                    if (up_value == value) {
                         return true;
                     }
                 }
@@ -183,6 +183,25 @@ public class Model {
         int targetY = y;
 
         // TODO: Tasks 5, 6, and 10. Fill in this function.
+        targetY++;
+        while (targetY < board.size()) {
+            Tile target_tile = board.tile(x, targetY);
+            if (target_tile != null) { // Meet a not null tile
+                break;
+            }
+            targetY++;
+        }
+        // Hit top boundary
+        if (targetY == board.size()) {
+            board.move(x, targetY - 1, currTile);
+        } else {
+            Tile target_tile = board.tile(x, targetY);
+            if (target_tile.value() == myValue && !target_tile.wasMerged()) {   // Same value tile to merge
+                board.move(x, targetY, currTile);
+            } else {    // Different value tile to move to downside
+                board.move(x, targetY - 1, currTile);
+            }
+        }
     }
 
     /** Handles the movements of the tilt in column x of board B
@@ -192,10 +211,20 @@ public class Model {
      * */
     public void tiltColumn(int x) {
         // TODO: Task 7. Fill in this function.
+        for (int j = board.size() - 2; j >= 0; j--) {
+            if (board.tile(x,j) != null) {
+                moveTileUpAsFarAsPossible(x, j);
+            }
+        }
     }
 
     public void tilt(Side side) {
         // TODO: Tasks 8 and 9. Fill in this function.
+        board.setViewingPerspective(side);
+        for (int x = 0; x < board.size(); x++) {
+            tiltColumn(x);
+        }
+        board.setViewingPerspective(Side.NORTH);
     }
 
     /** Tilts every column of the board toward SIDE.
