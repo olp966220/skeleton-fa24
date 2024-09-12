@@ -17,6 +17,7 @@ public class BeeCountingStage implements AdventureStage {
     public BeeCountingStage(In in) {
         this.in = in;
         this.responses = Map.of("go", new SpeciesListStage(in));
+        this.input = new ArrayList<>();
     }
 
     /**
@@ -50,14 +51,13 @@ public class BeeCountingStage implements AdventureStage {
                     input = this.in.readLine();
                 }
                 expectedSum += currNum;
-                this.input = new ArrayList<>();
                 this.input.add(input);
                 if (count < 2) {
                     System.out.println("How about now?");
                 }
                 count++;
             }
-            if (this.sumInput() == expectedSum) {
+            if (sumInput() == expectedSum) {
                 break;
             }
             System.out.println("You did not count the bees correctly. Let's try again!");
@@ -85,7 +85,7 @@ public class BeeCountingStage implements AdventureStage {
      */
     private int sumInput() {
         int sum = 0;
-        for (int i = 0; i <= this.input.size(); i++) {
+        for (int i = 0; i < this.input.size(); i++) {
             sum += Integer.parseInt(this.input.get(i));
         }
         return sum;
