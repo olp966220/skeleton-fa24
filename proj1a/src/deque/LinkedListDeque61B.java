@@ -1,28 +1,54 @@
 package deque;
 
-import java.util.Collection;
-import java.util.Deque;
-import java.util.Iterator;
+import java.util.*;
 
-public class LinkedListDeque61B<T> implements Deque<T> {
+public class LinkedListDeque61B<T> implements Deque61B<T> {
+
+    public class Node {
+        public Node prev;
+        public T item;
+        public Node next;
+        public Node(Node p, T i, Node n) {
+            prev = p;
+            item = i;
+            next = n;
+        }
+    }
+
+    private Node sentinel;
+    private int size;
+
     @Override
-    public void addFirst(T t) {
+    public void addFirst(T x) {
+        Node newNode = new Node(sentinel, x, sentinel.next);
+        sentinel.next.prev = newNode;
+        sentinel.next = newNode;
+        size++;
+    }
+
+    @Override
+    public void addLast(T x) {
 
     }
 
     @Override
-    public void addLast(T t) {
-
+    public List<T> toList() {
+        List<T> list = new ArrayList<T>();
+        for (int i = 0; i < size; i++) {
+           list.add(sentinel.next.item);
+           sentinel = sentinel.next;
+        }
+        return list;
     }
 
     @Override
-    public boolean offerFirst(T t) {
+    public boolean isEmpty() {
         return false;
     }
 
     @Override
-    public boolean offerLast(T t) {
-        return false;
+    public int size() {
+        return 0;
     }
 
     @Override
@@ -36,150 +62,19 @@ public class LinkedListDeque61B<T> implements Deque<T> {
     }
 
     @Override
-    public T pollFirst() {
+    public T get(int index) {
         return null;
     }
 
     @Override
-    public T pollLast() {
-        return null;
-    }
-
-    @Override
-    public T getFirst() {
-        return null;
-    }
-
-    @Override
-    public T getLast() {
-        return null;
-    }
-
-    @Override
-    public T peekFirst() {
-        return null;
-    }
-
-    @Override
-    public T peekLast() {
-        return null;
-    }
-
-    @Override
-    public boolean removeFirstOccurrence(Object o) {
-        return false;
-    }
-
-    @Override
-    public boolean removeLastOccurrence(Object o) {
-        return false;
-    }
-
-    @Override
-    public boolean add(T t) {
-        return false;
-    }
-
-    @Override
-    public boolean offer(T t) {
-        return false;
-    }
-
-    @Override
-    public T remove() {
-        return null;
-    }
-
-    @Override
-    public T poll() {
-        return null;
-    }
-
-    @Override
-    public T element() {
-        return null;
-    }
-
-    @Override
-    public T peek() {
-        return null;
-    }
-
-    @Override
-    public boolean addAll(Collection<? extends T> c) {
-        return false;
-    }
-
-    @Override
-    public boolean removeAll(Collection<?> c) {
-        return false;
-    }
-
-    @Override
-    public boolean retainAll(Collection<?> c) {
-        return false;
-    }
-
-    @Override
-    public void clear() {
-
-    }
-
-    @Override
-    public void push(T t) {
-
-    }
-
-    @Override
-    public T pop() {
-        return null;
-    }
-
-    @Override
-    public boolean remove(Object o) {
-        return false;
-    }
-
-    @Override
-    public boolean containsAll(Collection<?> c) {
-        return false;
-    }
-
-    @Override
-    public boolean contains(Object o) {
-        return false;
-    }
-
-    @Override
-    public int size() {
-        return 0;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return false;
-    }
-
-    @Override
-    public Iterator<T> iterator() {
-        return null;
-    }
-
-    @Override
-    public Object[] toArray() {
-        return new Object[0];
-    }
-
-    @Override
-    public <T1> T1[] toArray(T1[] a) {
-        return null;
-    }
-
-    @Override
-    public Iterator<T> descendingIterator() {
+    public T getRecursive(int index) {
         return null;
     }
 
     public LinkedListDeque61B() {
+        sentinel = new Node(null, null, null);
+        sentinel.prev = sentinel;
+        sentinel.next = sentinel;   // The empty list is represented by a single sentinel node that points at itself.
+        size = 0;
     }
 }
