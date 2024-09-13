@@ -1,6 +1,7 @@
 package deque;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LinkedListDeque61B<T> implements Deque61B<T> {
 
@@ -36,7 +37,7 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
 
     @Override
     public List<T> toList() {
-        List<T> list = new ArrayList<T>();
+        List<T> list = new ArrayList<>();
         for (int i = 0; i < size; i++) {
            list.add(sentinel.next.item);
            sentinel = sentinel.next;
