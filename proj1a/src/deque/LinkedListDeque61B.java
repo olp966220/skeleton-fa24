@@ -28,7 +28,10 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
 
     @Override
     public void addLast(T x) {
-
+        Node newNode = new Node(sentinel.prev, x, sentinel);
+        sentinel.prev.next = newNode;
+        sentinel.prev = newNode;
+        size++;
     }
 
     @Override
