@@ -61,6 +61,7 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
         Node delete = sentinel.next;
         sentinel.next.next.prev = sentinel;
         sentinel.next = sentinel.next.next;
+        size--;
         return delete.item;
     }
 
@@ -69,6 +70,7 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
         Node delete = sentinel.prev;
         sentinel.prev.prev.next = sentinel;
         sentinel.prev = sentinel.prev.prev;
+        size--;
         return delete.item;
     }
 
