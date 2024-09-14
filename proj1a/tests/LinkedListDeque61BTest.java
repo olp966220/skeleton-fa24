@@ -70,4 +70,21 @@ public class LinkedListDeque61BTest {
 
         assertThat(lld1.isEmpty()).isTrue();
     }
+
+    @Test
+    /** This test performs interspersed size 0. */
+    public void testSizeZero() {
+        Deque61B<Integer> lld1 = new LinkedListDeque61B<>();
+
+        assertThat(lld1.size()==0).isTrue();
+    }
+
+    @Test
+    /** This test performs interspersed size 1. */
+    public void testSizeOne() {
+        Deque61B<String> lld1 = new LinkedListDeque61B<>();
+        lld1.addFirst("back");
+
+        assertThat(lld1.size()==1).isTrue();
+    }
 }
