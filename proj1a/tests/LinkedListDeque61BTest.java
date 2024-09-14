@@ -65,7 +65,7 @@ public class LinkedListDeque61BTest {
 
     @Test
     /** This test performs interspersed isEmpty. */
-    public void isEmptyTest() {
+    public void testIsEmpty() {
         Deque61B<Integer> lld1 = new LinkedListDeque61B<>();
 
         assertThat(lld1.isEmpty()).isTrue();
