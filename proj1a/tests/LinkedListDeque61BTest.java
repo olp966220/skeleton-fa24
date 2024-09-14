@@ -9,6 +9,7 @@ import deque.*;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 /** Performs some basic linked list tests. */
 public class LinkedListDeque61BTest {
@@ -72,19 +73,25 @@ public class LinkedListDeque61BTest {
     }
 
     @Test
-    /** This test performs interspersed size 0. */
-    public void testSizeZero() {
-        Deque61B<Integer> lld1 = new LinkedListDeque61B<>();
-
+    /** This test performs interspersed size. */
+    public void testSize() {
+        Deque61B<String> lld1 = new LinkedListDeque61B<>();
         assertThat(lld1.size()==0).isTrue();
+
+        lld1.addFirst("back");
+        assertThat(lld1.size()==1).isTrue();
     }
 
+
     @Test
-    /** This test performs interspersed size 1. */
-    public void testSizeOne() {
+    /** This test performs interspersed get. */
+    public void testGet() {
         Deque61B<String> lld1 = new LinkedListDeque61B<>();
         lld1.addFirst("back");
+        lld1.addFirst("middle");
+        String a = lld1.get(0);
 
-        assertThat(lld1.size()==1).isTrue();
+        assertThat(Objects.equals(lld1.get(0), "middle")).isTrue();
+        assertThat(Objects.equals(lld1.get(1), "back")).isTrue();
     }
 }
