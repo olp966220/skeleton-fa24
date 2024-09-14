@@ -89,9 +89,19 @@ public class LinkedListDeque61BTest {
         Deque61B<String> lld1 = new LinkedListDeque61B<>();
         lld1.addFirst("back");
         lld1.addFirst("middle");
-        String a = lld1.get(0);
 
         assertThat(Objects.equals(lld1.get(0), "middle")).isTrue();
         assertThat(Objects.equals(lld1.get(1), "back")).isTrue();
+    }
+
+    @Test
+    /** This test performs interspersed get. */
+    public void testGetRecursive() {
+        Deque61B<String> lld1 = new LinkedListDeque61B<>();
+        lld1.addFirst("back");
+        lld1.addFirst("middle");
+
+        assertThat(Objects.equals(lld1.getRecursive(0), "middle")).isTrue();
+        assertThat(Objects.equals(lld1.getRecursive(1), "back")).isTrue();
     }
 }
