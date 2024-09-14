@@ -115,4 +115,15 @@ public class LinkedListDeque61BTest {
         assertThat(Objects.equals(lld1.removeFirst(), "middle")).isTrue();
         assertThat(Objects.equals(lld1.removeFirst(), "back")).isTrue();
     }
+
+    @Test
+    /** This test performs interspersed removeLast. */
+    public void testRemoveLast() {
+        Deque61B<String> lld1 = new LinkedListDeque61B<>();
+        lld1.addFirst("back");
+        lld1.addFirst("middle");
+
+        assertThat(Objects.equals(lld1.removeLast(), "back")).isTrue();
+        assertThat(Objects.equals(lld1.removeLast(), "middle")).isTrue();
+    }
 }
