@@ -95,7 +95,7 @@ public class LinkedListDeque61BTest {
     }
 
     @Test
-    /** This test performs interspersed get. */
+    /** This test performs interspersed getRecursive. */
     public void testGetRecursive() {
         Deque61B<String> lld1 = new LinkedListDeque61B<>();
         lld1.addFirst("back");
@@ -103,5 +103,16 @@ public class LinkedListDeque61BTest {
 
         assertThat(Objects.equals(lld1.getRecursive(0), "middle")).isTrue();
         assertThat(Objects.equals(lld1.getRecursive(1), "back")).isTrue();
+    }
+
+    @Test
+    /** This test performs interspersed removeFirst. */
+    public void testRemoveFirst() {
+        Deque61B<String> lld1 = new LinkedListDeque61B<>();
+        lld1.addFirst("back");
+        lld1.addFirst("middle");
+
+        assertThat(Objects.equals(lld1.removeFirst(), "middle")).isTrue();
+        assertThat(Objects.equals(lld1.removeFirst(), "back")).isTrue();
     }
 }
