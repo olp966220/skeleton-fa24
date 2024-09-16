@@ -70,10 +70,10 @@ class GUI extends TopLevel {
     String getKey() {
         String command = readKey();
         switch (command) {
-            case "↑" -> command = "Up";
-            case "→" -> command = "Right";
-            case "↓" -> command = "Down";
-            case "←" -> command = "Left";
+            case "\u2191" -> command = "Up";
+            case "\u2192" -> command = "Right";
+            case "\u2193" -> command = "Down";
+            case "\u2194" -> command = "Left";
             default -> {}
         }
 
